@@ -1,0 +1,18 @@
+version: 2.1 # use CircleCI 2.1 #
+
+jobs:
+  LoadJ: # job name
+    docker: # executor type
+      - image: cimg/openjdk:17.0.0
+    steps:
+      - checkout
+      - run:
+          name: Clean Install
+          command: ./mvnw clean install
+
+
+workflows:
+  version: 2
+  init_test:
+    jobs:
+      - LoadJ
